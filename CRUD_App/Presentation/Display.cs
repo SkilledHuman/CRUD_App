@@ -10,6 +10,7 @@ namespace CRUD_App.Presentation
 {
     public class Display
     {
+        ProductBusiness productBusiness = new ProductBusiness();
         private void Show()
         {
             Console.WriteLine(new string('-', 40));
@@ -55,12 +56,12 @@ namespace CRUD_App.Presentation
             product.Price = decimal.Parse(Console.ReadLine());
             Console.WriteLine("Enter stock: ");
             product.Stock = int.Parse(Console.ReadLine());
-            ProductBusiness.Add(product);
+            productBusiness.Add(product);
         }
 
         private void ListAll()
         {
-            List<Product> products = ProductBusiness.ListAll();
+            List<Product> products = productBusiness.ListAll();
             foreach (var item in products)
             {
                 Console.WriteLine("{0}  {1} {2}  {3} ", item.Id, item.Name, item.Price, item.Stock);
@@ -71,7 +72,7 @@ namespace CRUD_App.Presentation
         {
             Console.WriteLine("Enter id to update ");
             int id = int.Parse(Console.ReadLine());
-            Product product = ProductBusiness.Get(id);
+            Product product = productBusiness.Get(id);
             if (product != null)
             {
                 Console.WriteLine("Enter new name: ");
@@ -80,7 +81,7 @@ namespace CRUD_App.Presentation
                 product.Price = decimal.Parse(Console.ReadLine());
                 Console.WriteLine("Enter new stock: ");
                 product.Stock = int.Parse(Console.ReadLine());
-                ProductBusiness.Update(product);
+                productBusiness.Update(product);
             }
             else Console.WriteLine("Product not found!");
         }
@@ -89,7 +90,7 @@ namespace CRUD_App.Presentation
         {
             Console.WriteLine("Enter id to fetch ");
             int id = int.Parse(Console.ReadLine());
-            Product product = ProductBusiness.Get(id);
+            Product product = productBusiness.Get(id);
             if (product != null)
             {
                 Console.WriteLine("Id: " + product.Id);
@@ -104,7 +105,7 @@ namespace CRUD_App.Presentation
         {
             Console.WriteLine("Enter id to delete ");
             int id = int.Parse(Console.ReadLine());
-            ProductBusiness.Delete(id);
+            productBusiness.Delete(id);
             Console.WriteLine("Done!");
         }
     }
